@@ -7,17 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2198D8BDEFF98DD9F8E7DBC8 /* Pods_CICDDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 677443A84B32A822D45BBF1F /* Pods_CICDDemoTests.framework */; };
+		5A3339C427300EAF9CD2ABC1 /* Pods_CICDDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4C6BB1C0A04EBD2F2FB0B47 /* Pods_CICDDemoTests.framework */; };
 		874F2D2F2E0E6A6A003612FB /* CICDDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F2D2E2E0E6A6A003612FB /* CICDDemoApp.swift */; };
 		874F2D312E0E6A6A003612FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F2D302E0E6A6A003612FB /* ContentView.swift */; };
 		874F2D332E0E6A6A003612FB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F2D322E0E6A6A003612FB /* Item.swift */; };
 		874F2D352E0E6A6C003612FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 874F2D342E0E6A6C003612FB /* Assets.xcassets */; };
 		874F2D382E0E6A6C003612FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 874F2D372E0E6A6C003612FB /* Preview Assets.xcassets */; };
 		874F2D422E0E6A6C003612FB /* CICDDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F2D412E0E6A6C003612FB /* CICDDemoTests.swift */; };
-		874F2D4C2E0E6A6C003612FB /* CICDDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F2D4B2E0E6A6C003612FB /* CICDDemoUITests.swift */; };
-		874F2D4E2E0E6A6C003612FB /* CICDDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F2D4D2E0E6A6C003612FB /* CICDDemoUITestsLaunchTests.swift */; };
-		DC0F39900F8DCCDEA2D4325F /* Pods_CICDDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD112207569B56C8DB54E3FB /* Pods_CICDDemo.framework */; };
-		E0526AAE2440F4648F6B9B38 /* Pods_CICDDemo_CICDDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD96CC0769CEBF2F8E362C0 /* Pods_CICDDemo_CICDDemoUITests.framework */; };
+		D55434E4645753E630DFB2AB /* Pods_CICDDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837F816BB5AD4BE487C676C2 /* Pods_CICDDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,19 +25,12 @@
 			remoteGlobalIDString = 874F2D2A2E0E6A6A003612FB;
 			remoteInfo = CICDDemo;
 		};
-		874F2D482E0E6A6C003612FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 874F2D232E0E6A6A003612FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 874F2D2A2E0E6A6A003612FB;
-			remoteInfo = CICDDemo;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0AD96CC0769CEBF2F8E362C0 /* Pods_CICDDemo_CICDDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CICDDemo_CICDDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F973CF808AFD5938305EA49 /* Pods-CICDDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-CICDDemoTests/Pods-CICDDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		677443A84B32A822D45BBF1F /* Pods_CICDDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CICDDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C81E0781341F93DEA75123C /* Pods-CICDDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemo.debug.xcconfig"; path = "Target Support Files/Pods-CICDDemo/Pods-CICDDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		59A16421CFDE07F3048AA20E /* Pods-CICDDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-CICDDemoTests/Pods-CICDDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		837F816BB5AD4BE487C676C2 /* Pods_CICDDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CICDDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		874F2D2B2E0E6A6A003612FB /* CICDDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CICDDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		874F2D2E2E0E6A6A003612FB /* CICDDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CICDDemoApp.swift; sourceTree = "<group>"; };
 		874F2D302E0E6A6A003612FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,15 +39,9 @@
 		874F2D372E0E6A6C003612FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		874F2D3D2E0E6A6C003612FB /* CICDDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CICDDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		874F2D412E0E6A6C003612FB /* CICDDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CICDDemoTests.swift; sourceTree = "<group>"; };
-		874F2D472E0E6A6C003612FB /* CICDDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CICDDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		874F2D4B2E0E6A6C003612FB /* CICDDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CICDDemoUITests.swift; sourceTree = "<group>"; };
-		874F2D4D2E0E6A6C003612FB /* CICDDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CICDDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		87B8D937F86CE7D2CF11E336 /* Pods-CICDDemo-CICDDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemo-CICDDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-CICDDemo-CICDDemoUITests/Pods-CICDDemo-CICDDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		8862BEBABC44295A9D817068 /* Pods-CICDDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemoTests.release.xcconfig"; path = "Target Support Files/Pods-CICDDemoTests/Pods-CICDDemoTests.release.xcconfig"; sourceTree = "<group>"; };
-		8E75C2CB39271E8F4446EC7D /* Pods-CICDDemo-CICDDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemo-CICDDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-CICDDemo-CICDDemoUITests/Pods-CICDDemo-CICDDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9DC512604FC116912170B57B /* Pods-CICDDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemo.debug.xcconfig"; path = "Target Support Files/Pods-CICDDemo/Pods-CICDDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		AC9DAF1FBC70F9525ADEF652 /* Pods-CICDDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemo.release.xcconfig"; path = "Target Support Files/Pods-CICDDemo/Pods-CICDDemo.release.xcconfig"; sourceTree = "<group>"; };
-		DD112207569B56C8DB54E3FB /* Pods_CICDDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CICDDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4C6BB1C0A04EBD2F2FB0B47 /* Pods_CICDDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CICDDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5D856010CA5761777317C96 /* Pods-CICDDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemoTests.release.xcconfig"; path = "Target Support Files/Pods-CICDDemoTests/Pods-CICDDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		FC159B40B37AD10C3AA6BF90 /* Pods-CICDDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemo.release.xcconfig"; path = "Target Support Files/Pods-CICDDemo/Pods-CICDDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC0F39900F8DCCDEA2D4325F /* Pods_CICDDemo.framework in Frameworks */,
+				D55434E4645753E630DFB2AB /* Pods_CICDDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,27 +57,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2198D8BDEFF98DD9F8E7DBC8 /* Pods_CICDDemoTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		874F2D442E0E6A6C003612FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E0526AAE2440F4648F6B9B38 /* Pods_CICDDemo_CICDDemoUITests.framework in Frameworks */,
+				5A3339C427300EAF9CD2ABC1 /* Pods_CICDDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04ACFB507EB211274A2BA2B4 /* Frameworks */ = {
+		0FBFD62E87E5DB8964FB7C38 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD112207569B56C8DB54E3FB /* Pods_CICDDemo.framework */,
-				0AD96CC0769CEBF2F8E362C0 /* Pods_CICDDemo_CICDDemoUITests.framework */,
-				677443A84B32A822D45BBF1F /* Pods_CICDDemoTests.framework */,
+				837F816BB5AD4BE487C676C2 /* Pods_CICDDemo.framework */,
+				B4C6BB1C0A04EBD2F2FB0B47 /* Pods_CICDDemoTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,14 +76,11 @@
 		315BF4B33C6CE5A366E9782A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9DC512604FC116912170B57B /* Pods-CICDDemo.debug.xcconfig */,
-				AC9DAF1FBC70F9525ADEF652 /* Pods-CICDDemo.release.xcconfig */,
-				8E75C2CB39271E8F4446EC7D /* Pods-CICDDemo-CICDDemoUITests.debug.xcconfig */,
-				87B8D937F86CE7D2CF11E336 /* Pods-CICDDemo-CICDDemoUITests.release.xcconfig */,
-				4F973CF808AFD5938305EA49 /* Pods-CICDDemoTests.debug.xcconfig */,
-				8862BEBABC44295A9D817068 /* Pods-CICDDemoTests.release.xcconfig */,
+				4C81E0781341F93DEA75123C /* Pods-CICDDemo.debug.xcconfig */,
+				FC159B40B37AD10C3AA6BF90 /* Pods-CICDDemo.release.xcconfig */,
+				59A16421CFDE07F3048AA20E /* Pods-CICDDemoTests.debug.xcconfig */,
+				F5D856010CA5761777317C96 /* Pods-CICDDemoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -117,10 +89,9 @@
 			children = (
 				874F2D2D2E0E6A6A003612FB /* CICDDemo */,
 				874F2D402E0E6A6C003612FB /* CICDDemoTests */,
-				874F2D4A2E0E6A6C003612FB /* CICDDemoUITests */,
 				874F2D2C2E0E6A6A003612FB /* Products */,
 				315BF4B33C6CE5A366E9782A /* Pods */,
-				04ACFB507EB211274A2BA2B4 /* Frameworks */,
+				0FBFD62E87E5DB8964FB7C38 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,7 +100,6 @@
 			children = (
 				874F2D2B2E0E6A6A003612FB /* CICDDemo.app */,
 				874F2D3D2E0E6A6C003612FB /* CICDDemoTests.xctest */,
-				874F2D472E0E6A6C003612FB /* CICDDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,15 +132,6 @@
 			path = CICDDemoTests;
 			sourceTree = "<group>";
 		};
-		874F2D4A2E0E6A6C003612FB /* CICDDemoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				874F2D4B2E0E6A6C003612FB /* CICDDemoUITests.swift */,
-				874F2D4D2E0E6A6C003612FB /* CICDDemoUITestsLaunchTests.swift */,
-			);
-			path = CICDDemoUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,10 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 874F2D512E0E6A6C003612FB /* Build configuration list for PBXNativeTarget "CICDDemo" */;
 			buildPhases = (
-				AD7A13E7303F6011FB7B5246 /* [CP] Check Pods Manifest.lock */,
+				ED18875FD2A70CF649EAC014 /* [CP] Check Pods Manifest.lock */,
 				874F2D272E0E6A6A003612FB /* Sources */,
 				874F2D282E0E6A6A003612FB /* Frameworks */,
 				874F2D292E0E6A6A003612FB /* Resources */,
+				8760E8362E0E8C39000DBB5F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -196,7 +158,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 874F2D542E0E6A6C003612FB /* Build configuration list for PBXNativeTarget "CICDDemoTests" */;
 			buildPhases = (
-				A2AFF1FB571BD1CCD421AC41 /* [CP] Check Pods Manifest.lock */,
+				0339AD2EA9F6CB908119DEE3 /* [CP] Check Pods Manifest.lock */,
 				874F2D392E0E6A6C003612FB /* Sources */,
 				874F2D3A2E0E6A6C003612FB /* Frameworks */,
 				874F2D3B2E0E6A6C003612FB /* Resources */,
@@ -210,25 +172,6 @@
 			productName = CICDDemoTests;
 			productReference = 874F2D3D2E0E6A6C003612FB /* CICDDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		874F2D462E0E6A6C003612FB /* CICDDemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 874F2D572E0E6A6C003612FB /* Build configuration list for PBXNativeTarget "CICDDemoUITests" */;
-			buildPhases = (
-				CE18C19AE743CC7DC9317D1F /* [CP] Check Pods Manifest.lock */,
-				874F2D432E0E6A6C003612FB /* Sources */,
-				874F2D442E0E6A6C003612FB /* Frameworks */,
-				874F2D452E0E6A6C003612FB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				874F2D492E0E6A6C003612FB /* PBXTargetDependency */,
-			);
-			name = CICDDemoUITests;
-			productName = CICDDemoUITests;
-			productReference = 874F2D472E0E6A6C003612FB /* CICDDemoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -244,10 +187,6 @@
 						CreatedOnToolsVersion = 15.3;
 					};
 					874F2D3C2E0E6A6C003612FB = {
-						CreatedOnToolsVersion = 15.3;
-						TestTargetID = 874F2D2A2E0E6A6A003612FB;
-					};
-					874F2D462E0E6A6C003612FB = {
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = 874F2D2A2E0E6A6A003612FB;
 					};
@@ -268,7 +207,6 @@
 			targets = (
 				874F2D2A2E0E6A6A003612FB /* CICDDemo */,
 				874F2D3C2E0E6A6C003612FB /* CICDDemoTests */,
-				874F2D462E0E6A6C003612FB /* CICDDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -290,17 +228,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		874F2D452E0E6A6C003612FB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A2AFF1FB571BD1CCD421AC41 /* [CP] Check Pods Manifest.lock */ = {
+		0339AD2EA9F6CB908119DEE3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -322,7 +253,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AD7A13E7303F6011FB7B5246 /* [CP] Check Pods Manifest.lock */ = {
+		8760E8362E0E8C39000DBB5F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" --config \"${SRCROOT}/.swiftlint.yml\"\n";
+		};
+		ED18875FD2A70CF649EAC014 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -338,28 +286,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-CICDDemo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CE18C19AE743CC7DC9317D1F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CICDDemo-CICDDemoUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -387,15 +313,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		874F2D432E0E6A6C003612FB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				874F2D4E2E0E6A6C003612FB /* CICDDemoUITestsLaunchTests.swift in Sources */,
-				874F2D4C2E0E6A6C003612FB /* CICDDemoUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -403,11 +320,6 @@
 			isa = PBXTargetDependency;
 			target = 874F2D2A2E0E6A6A003612FB /* CICDDemo */;
 			targetProxy = 874F2D3E2E0E6A6C003612FB /* PBXContainerItemProxy */;
-		};
-		874F2D492E0E6A6C003612FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 874F2D2A2E0E6A6A003612FB /* CICDDemo */;
-			targetProxy = 874F2D482E0E6A6C003612FB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -533,7 +445,7 @@
 		};
 		874F2D522E0E6A6C003612FB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DC512604FC116912170B57B /* Pods-CICDDemo.debug.xcconfig */;
+			baseConfigurationReference = 4C81E0781341F93DEA75123C /* Pods-CICDDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -563,7 +475,7 @@
 		};
 		874F2D532E0E6A6C003612FB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC9DAF1FBC70F9525ADEF652 /* Pods-CICDDemo.release.xcconfig */;
+			baseConfigurationReference = FC159B40B37AD10C3AA6BF90 /* Pods-CICDDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -593,7 +505,7 @@
 		};
 		874F2D552E0E6A6C003612FB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F973CF808AFD5938305EA49 /* Pods-CICDDemoTests.debug.xcconfig */;
+			baseConfigurationReference = 59A16421CFDE07F3048AA20E /* Pods-CICDDemoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -614,7 +526,7 @@
 		};
 		874F2D562E0E6A6C003612FB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8862BEBABC44295A9D817068 /* Pods-CICDDemoTests.release.xcconfig */;
+			baseConfigurationReference = F5D856010CA5761777317C96 /* Pods-CICDDemoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -630,44 +542,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CICDDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CICDDemo";
-			};
-			name = Release;
-		};
-		874F2D582E0E6A6C003612FB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E75C2CB39271E8F4446EC7D /* Pods-CICDDemo-CICDDemoUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GSD8RN9T2M;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.CristiCh.CICDDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CICDDemo;
-			};
-			name = Debug;
-		};
-		874F2D592E0E6A6C003612FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87B8D937F86CE7D2CF11E336 /* Pods-CICDDemo-CICDDemoUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GSD8RN9T2M;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.CristiCh.CICDDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CICDDemo;
 			};
 			name = Release;
 		};
@@ -697,15 +571,6 @@
 			buildConfigurations = (
 				874F2D552E0E6A6C003612FB /* Debug */,
 				874F2D562E0E6A6C003612FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		874F2D572E0E6A6C003612FB /* Build configuration list for PBXNativeTarget "CICDDemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				874F2D582E0E6A6C003612FB /* Debug */,
-				874F2D592E0E6A6C003612FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

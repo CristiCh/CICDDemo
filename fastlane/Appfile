@@ -1,0 +1,9 @@
+# app_identifier("com.CristiCh.CICDDemo") # The bundle identifier of your app
+# apple_id("cristi.chertes@gmail.com") # Your Apple Developer Portal username
+
+
+# Since we're using a free account, we don't need team IDs for distribution
+# team_id("GSD8RN9T2M") # Only needed for paid accounts
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

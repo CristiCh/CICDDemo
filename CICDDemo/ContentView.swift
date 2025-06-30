@@ -11,7 +11,8 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-
+//    private var kljfdlsjfsjfsjkfdslkfjsdlkfjslkdjglksjglksjlkgjlkdsjklsdjlkvmsdlkmvskldmvdlskmvklsmvlksvdmslkvmsklmvslkmvsklmslkmvsdlkmvklsmsklmvklsmvklsmvlksmvkldsmvlksdmdlkvsmlvmsvksmlvksmvlkdsmvksdlmvlkmvlksmvksdlmvklsmvlkdsmvsdklmvdslkmvskdlmvsklmvdslkmvklsmvklsmvklmvsl: String?
+    
     var body: some View {
         NavigationSplitView {
             List {

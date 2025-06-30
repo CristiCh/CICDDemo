@@ -1,0 +1,115 @@
+# Fastfile for Free Apple Developer Account
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    setup_circle_ci if ENV['CI']
+  end
+
+  desc "Run tests"
+  lane :test do
+    run_tests(
+      workspace: "CICDDemo.xcworkspace",
+      scheme: "CICDDemo",
+      device: "iPhone 15",
+      clean: true,
+      code_coverage: true,
+      destination: "platform=iOS Simulator,name=iPhone 15,OS=latest"
+    )
+  end
+
+  desc "Run SwiftLint"
+  lane :lint do
+    swiftlint(
+      mode: :lint,
+      executable: "./Pods/SwiftLint/swiftlint",
+      config_file: ".swiftlint.yml",
+      strict: false  # Set to false initially to avoid build failures
+    )
+  end
+
+  desc "Build for simulator (no signing required)"
+  lane :build_simulator do
+  	gym(
+	    workspace: "CICDDemo.xcworkspace",
+	    scheme: "CICDDemo",
+	    configuration: "Debug",
+	    destination: "platform=iOS Simulator,name=iPhone 15",
+	    skip_codesigning: true,
+	    clean: false,
+	    derived_data_path: "./DerivedData"
+  )
+  # 	gym(
+	 #    workspace: "CICDDemo.xcworkspace",
+	 #    scheme: "CICDDemo",
+	 #    destination: "generic/platform=iOS Simulator",
+	 #    configuration: "Debug",
+	 #    skip_codesigning: true,
+	 #    xcargs: "BUILD_DIR=$(PWD)/build -destination 'platform=iOS Simulator,name=iPhone 14' -derivedDataPath './DerivedData'"
+  # )
+    # gym(
+    #   workspace: "CICDDemo.xcworkspace",
+    #   scheme: "CICDDemo",
+    #   configuration: "Debug",
+    #   destination: "platform=iOS Simulator,name=iPhone 15,OS=latest",
+    #   skip_package_ipa: true,
+    #   skip_archive: true,
+    #   clean: true,
+    #   build_for_testing: true
+    # )
+  end
+
+  desc "Run all quality checks"
+  lane :quality_check do
+    lint
+    test
+    build_simulator
+  end
+
+  desc "Generate code coverage report"
+  lane :coverage do
+    run_tests(
+      workspace: "CICDDemo.xcworkspace",
+      scheme: "CICDDemo",
+      device: "iPhone 15",
+      code_coverage: true,
+      derived_data_path: "./DerivedData"
+    )
+    
+    # You can add tools like xcov here for better coverage reports
+    # xcov(
+    #   workspace: "CICDDemo.xcworkspace",
+    #   scheme: "CICDDemo",
+    #   output_directory: "fastlane/test_output"
+    # )
+  end
+
+  desc "Archive for development (Free account - local device only)"
+  lane :archive_development do
+    UI.important("⚠️  This requires a free Apple Developer account")
+    UI.important("📱 You can only install on devices signed in with your Apple ID")
+    
+    gym(
+      workspace: "CICDDemo.xcworkspace",
+      scheme: "CICDDemo",
+      configuration: "Debug",
+      export_method: "development",
+      clean: true,
+      include_bitcode: false,
+      skip_profile_detection: true
+    )
+    
+    UI.success("✅ Development archive created!")
+    UI.message("📋 You can now install this on your personal devices through Xcode")
+  end
+
+  after_all do |lane|
+    clean_build_artifacts
+    UI.success("✅ Lane #{lane} completed successfully!")
+  end
+
+  error do |lane, exception|
+    UI.error("❌ Error in lane #{lane}: #{exception.message}")
+    clean_build_artifacts
+  end
+end

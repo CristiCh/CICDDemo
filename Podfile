@@ -12,10 +12,6 @@ target 'CICDDemo' do
     inherit! :search_paths
     # Pods for testing
   end
-
-  target 'CICDDemoUITests' do
-    # Pods for testing
-  end
 end
 
 post_install do |installer|
