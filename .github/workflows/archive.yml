@@ -1,0 +1,28 @@
+name: Archive Development
+
+on:
+  push:
+    branches:
+      - main   # change to your preferred branch if needed
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby (for Fastlane)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0 # or your preferred Ruby version
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+          bundle exec pod install
+
+      - name: Run archive_development lane
+        run: bundle exec fastlane ios archive_development

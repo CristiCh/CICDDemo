@@ -32,5 +32,5 @@ jobs:
         pod install --verbose
 
     - name: Run tests with Fastlane
-      run: fastlane ios test
+      run: bundle exec fastlane ios test
 

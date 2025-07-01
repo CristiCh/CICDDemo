@@ -74,14 +74,6 @@ platform :ios do
   #     code_coverage: true,
   #     derived_data_path: "./DerivedData"
   #   )
-    
-  #   # You can add tools like xcov here for better coverage reports
-  #   xcov(
-  #     workspace: "CICDDemo.xcworkspace",
-  #     scheme: "CICDDemo",
-  #     output_directory: "fastlane/test_output"
-  #   )
-  # end
 
   desc "Creates the ipa"
   lane :archive_development do
