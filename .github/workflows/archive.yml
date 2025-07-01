@@ -14,10 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Ruby
+      - name: Set up Ruby 3.2.2
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.4   # replace with your Ruby version
+          ruby-version: 3.2.2   # replace with your Ruby version
 
       - name: Cache gems
         uses: actions/cache@v3
