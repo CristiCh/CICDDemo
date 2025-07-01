@@ -13,7 +13,7 @@ platform :ios do
       scheme: "CICDDemo",
       device: "iPhone 15",
       clean: true,
-      code_coverage: true,
+      code_coverage: false,
       destination: "platform=iOS Simulator,name=iPhone 15,OS=latest"
     )
   end
@@ -37,26 +37,8 @@ platform :ios do
 	    destination: "platform=iOS Simulator,name=iPhone 15",
 	    skip_codesigning: true,
 	    clean: false,
-	    derived_data_path: "./DerivedData"
+	    derived_data_path: "./DerivedData",
   )
-  # 	gym(
-	 #    workspace: "CICDDemo.xcworkspace",
-	 #    scheme: "CICDDemo",
-	 #    destination: "generic/platform=iOS Simulator",
-	 #    configuration: "Debug",
-	 #    skip_codesigning: true,
-	 #    xcargs: "BUILD_DIR=$(PWD)/build -destination 'platform=iOS Simulator,name=iPhone 14' -derivedDataPath './DerivedData'"
-  # )
-    # gym(
-    #   workspace: "CICDDemo.xcworkspace",
-    #   scheme: "CICDDemo",
-    #   configuration: "Debug",
-    #   destination: "platform=iOS Simulator,name=iPhone 15,OS=latest",
-    #   skip_package_ipa: true,
-    #   skip_archive: true,
-    #   clean: true,
-    #   build_for_testing: true
-    # )
   end
 
   desc "Run all quality checks"
@@ -66,47 +48,79 @@ platform :ios do
     build_simulator
   end
 
-  desc "Generate code coverage report"
-  lane :coverage do
-    run_tests(
-      workspace: "CICDDemo.xcworkspace",
-      scheme: "CICDDemo",
-      device: "iPhone 15",
-      code_coverage: true,
-      derived_data_path: "./DerivedData"
-    )
-    
-    # You can add tools like xcov here for better coverage reports
-    # xcov(
-    #   workspace: "CICDDemo.xcworkspace",
-    #   scheme: "CICDDemo",
-    #   output_directory: "fastlane/test_output"
-    # )
-  end
 
-  desc "Archive for development (Free account - local device only)"
-  lane :archive_development do
-    UI.important("⚠️  This requires a free Apple Developer account")
-    UI.important("📱 You can only install on devices signed in with your Apple ID")
-    
-    gym(
-      workspace: "CICDDemo.xcworkspace",
-      scheme: "CICDDemo",
-      configuration: "Debug",
-      export_method: "development",
-      clean: true,
-      include_bitcode: false,
-      skip_profile_detection: true
-    )
-    
-    UI.success("✅ Development archive created!")
-    UI.message("📋 You can now install this on your personal devices through Xcode")
+  lane :coverage do
+  run_tests(
+    workspace: "CICDDemo.xcworkspace",
+    scheme: "CICDDemo",
+    device: "iPhone 15",
+    code_coverage: true,
+    derived_data_path: "./DerivedData"
+  )
+  
+  slather(
+    proj: "CICDDemo.xcodeproj",
+    scheme: "CICDDemo",
+    workspace: "CICDDemo.xcworkspace",
+    # coveralls: true,   # or "coveralls", "codecov", etc.
+  )
   end
+  # desc "Generate code coverage report"
+  # lane :coverage do
+  #   run_tests(
+  #     workspace: "CICDDemo.xcworkspace",
+  #     scheme: "CICDDemo",
+  #     device: "iPhone 15",
+  #     code_coverage: true,
+  #     derived_data_path: "./DerivedData"
+  #   )
+    
+  #   # You can add tools like xcov here for better coverage reports
+  #   xcov(
+  #     workspace: "CICDDemo.xcworkspace",
+  #     scheme: "CICDDemo",
+  #     output_directory: "fastlane/test_output"
+  #   )
+  # end
+
+  desc "Creates the ipa"
+  lane :archive_development do
+  UI.important("⚠️  This requires a free Apple Developer account")
+  UI.important("📱 You can only install on devices signed in with your Apple ID")
+
+  # Generate a timestamp string like "20250701-153012" (yyyyMMdd-HHmmss)
+  timestamp = Time.now.strftime("%Y%m%d-%H%M%S")
+  build_number = get_build_number(xcodeproj: "CICDDemo.xcodeproj")
+  new_build_number = build_number.to_i + 1
+
+  increment_build_number(
+  	build_number: new_build_number.to_s,
+  	xcodeproj: "CICDDemo.xcodeproj"
+)
+
+  ipa_path = gym(
+    workspace: "CICDDemo.xcworkspace",
+    scheme: "CICDDemo",
+    configuration: "Debug",
+    export_method: "development",
+    clean: true,
+    include_bitcode: false,
+    skip_profile_detection: true,
+    output_directory: "./build",
+    output_name: "CICDDemo_#{new_build_number.to_s}_#{timestamp}.ipa"
+  )
+
+  UI.success("✅ Development archive created!")
+  UI.message("📋 IPA location: #{ipa_path}")
+end
 
   after_all do |lane|
+  unless lane == :archive_development
     clean_build_artifacts
-    UI.success("✅ Lane #{lane} completed successfully!")
   end
+  UI.success("✅ Lane #{lane} completed successfully!")
+end
+
 
   error do |lane, exception|
     UI.error("❌ Error in lane #{lane}: #{exception.message}")
