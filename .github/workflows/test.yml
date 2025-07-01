@@ -15,16 +15,22 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Set up Ruby
+    - name: Install Ruby dependencies
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2.2  # match your rbenv version
+        ruby-version: 3.2.2
 
-    - name: Install dependencies
+    - name: Install Bundler and Gems
       run: |
         gem install bundler
-        bundle install
-        # or just: gem install fastlane if not using bundler
+        bundle install || true  # if you use Bundler, else skip
+
+    - name: Install CocoaPods
+      run: |
+        sudo gem install cocoapods
+        pod repo update
+        pod install --verbose
 
     - name: Run tests with Fastlane
       run: fastlane ios test
+
