@@ -1,28 +1,38 @@
-name: Archive Development
+name: iOS Build and Archive
 
 on:
   push:
     branches:
-      - main   # change to your preferred branch if needed
+      - main
+  pull_request:
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Ruby (for Fastlane)
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0 # or your preferred Ruby version
+          ruby-version: 3.4.4   # replace with your Ruby version
 
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-          bundle exec pod install
+      - name: Cache gems
+        uses: actions/cache@v3
+        id: cache-gems
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
 
-      - name: Run archive_development lane
-        run: bundle exec fastlane ios archive_development
+      - name: Install Bundler
+        run: gem install bundler
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
+
+      - name: Run archive command
+        run: bundle exec fastlane archive_development
