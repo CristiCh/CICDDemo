@@ -1,0 +1,30 @@
+name: iOS Test
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - '**'   # or any branches you want to run tests on
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.2  # match your rbenv version
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+        # or just: gem install fastlane if not using bundler
+
+    - name: Run tests with Fastlane
+      run: fastlane ios test
