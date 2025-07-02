@@ -34,5 +34,9 @@ jobs:
       - name: Install gems
         run: bundle install --jobs 4 --retry 3 --path vendor/bundle
 
+      - name: Install CocoaPods dependencies
+        run: pod install
+        working-directory: CICDDemo
+
       - name: Run archive command
         run: bundle exec fastlane archive_development
