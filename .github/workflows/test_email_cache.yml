@@ -65,9 +65,9 @@ jobs:
           server_port: 465
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          subject: "iOS Test Result ${{ needs.test.outputs.test_result }}"
+          subject: "${{ needs.test.outputs.test_result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed"
           body: |
-            ✅ iOS Test Workflow Completed
+            ${{ needs.test.outputs.test_result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed
 
             • **Status:** ${{ needs.test.outputs.test_result }}
             • **Repository:** ${{ github.repository }}
