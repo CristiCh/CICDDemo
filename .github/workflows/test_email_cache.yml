@@ -69,15 +69,20 @@ jobs:
           name: ios-changelog
           path: changelog.md
 
-      - name: Record end time
-        id: end_time
-        run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
-
-    notify:
+  notify:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Download changelog artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-changelog
+          path: .
+
       - name: Record current time as end time
         id: end_time
         run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
@@ -92,18 +97,18 @@ jobs:
           seconds=$((duration % 60))
           echo "duration=${minutes}m ${seconds}s" >> "$GITHUB_OUTPUT"
 
-      - name: Send email notification with test result
+      - name: Send email notification with test result and changelog
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 465
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          subject: "${{ needs.test.result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed"
+          subject: "${{ needs.test.outputs.test_result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed"
           body: |
-            ${{ needs.test.result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed
+            ${{ needs.test.outputs.test_result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed
 
-            • **Status:** ${{ needs.test.result }}
+            • **Status:** ${{ needs.test.outputs.test_result }}
             • **Duration:** ${{ steps.duration.outputs.duration }}
             • **Repository:** ${{ github.repository }}
             • **Event:** ${{ github.event_name }}
@@ -114,5 +119,5 @@ jobs:
             -- GitHub Actions
           to: cristi.chertes@yahoo.com
           from: ${{ secrets.GMAIL_USERNAME }}
-          attachments: CHANGELOG.md
           secure: true
+          attachments: changelog.md
