@@ -13,6 +13,7 @@ jobs:
     runs-on: macos-latest
     outputs:
       test_result: ${{ job.status }}
+      start_time: ${{ steps.start_time.outputs.time }}
 
     steps:
       - name: Record start time
@@ -72,17 +73,11 @@ jobs:
         id: end_time
         run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
 
-  notify:
+    notify:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
-    #   - name: Checkout repo
-    #     uses: actions/checkout@v3
-
-      - name: Get start time from test job
-        run: echo "start_time=${{ needs.test.outputs.start_time }}" >> "$GITHUB_ENV"
-
       - name: Record current time as end time
         id: end_time
         run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
@@ -90,9 +85,9 @@ jobs:
       - name: Calculate duration
         id: duration
         run: |
-          start_time=${{ needs.test.steps.start_time.outputs.time }}
-          end_time=${{ steps.end_time.outputs.time }}
-          duration=$((end_time - start_time))
+          start=${{ needs.test.outputs.start_time }}
+          end=${{ steps.end_time.outputs.time }}
+          duration=$((end - start))
           minutes=$((duration / 60))
           seconds=$((duration % 60))
           echo "duration=${minutes}m ${seconds}s" >> "$GITHUB_OUTPUT"
@@ -119,4 +114,5 @@ jobs:
             -- GitHub Actions
           to: cristi.chertes@yahoo.com
           from: ${{ secrets.GMAIL_USERNAME }}
+          attachments: CHANGELOG.md
           secure: true
