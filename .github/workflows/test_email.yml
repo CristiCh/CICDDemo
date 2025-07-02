@@ -1,0 +1,56 @@
+name: iOS Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - '**'
+
+jobs:
+  test:
+    runs-on: macos-latest
+    outputs:
+      test_result: ${{ job.status }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Ruby dependencies
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+
+      - name: Install Bundler and Gems
+        run: |
+          gem install bundler
+          bundle install || true
+
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+          pod repo update
+          pod install --verbose
+
+      - name: Run tests with Fastlane
+        run: bundle exec fastlane ios test
+
+  notify:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send email notification with test result
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          subject: "iOS Test Result ${{ needs.test.outputs.test_result }}"
+          body: "Tests finished with status: ${{ needs.test.outputs.test_result }}"
+          to: cristi.chertes@yahoo.com
+          from: ${{ secrets.GMAIL_USERNAME }}
+          secure: true
