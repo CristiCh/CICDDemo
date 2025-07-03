@@ -1,0 +1,21 @@
+# A list of devices you want to take the screenshots from
+devices([
+  "iPhone 15 Pro Max"
+])
+
+# Languages to test
+languages([
+  "en-US"
+])
+
+# The name of the scheme which contains the UI Tests
+scheme("CICDDemo")
+
+# Where should the resulting screenshots be stored?
+output_directory("./fastlane/screenshots")
+
+# Clear previously generated screenshots before capturing new ones
+clear_previous_screenshots(true)
+
+# Set status bar to 9:41 AM, full battery and full reception for consistent screenshots
+override_status_bar(true)

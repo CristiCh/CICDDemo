@@ -16,6 +16,7 @@
 		874F2D422E0E6A6C003612FB /* CICDDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F2D412E0E6A6C003612FB /* CICDDemoTests.swift */; };
 		8772D3D52E166D8700434836 /* CICDDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772D3D42E166D8700434836 /* CICDDemoUITests.swift */; };
 		8772D3D72E166D8700434836 /* CICDDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772D3D62E166D8700434836 /* CICDDemoUITestsLaunchTests.swift */; };
+		8772D3DE2E16853E00434836 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772D3DD2E16853E00434836 /* SnapshotHelper.swift */; };
 		D55434E4645753E630DFB2AB /* Pods_CICDDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837F816BB5AD4BE487C676C2 /* Pods_CICDDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		8772D3D22E166D8700434836 /* CICDDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CICDDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8772D3D42E166D8700434836 /* CICDDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CICDDemoUITests.swift; sourceTree = "<group>"; };
 		8772D3D62E166D8700434836 /* CICDDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CICDDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8772D3DD2E16853E00434836 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		B4C6BB1C0A04EBD2F2FB0B47 /* Pods_CICDDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CICDDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D856010CA5761777317C96 /* Pods-CICDDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemoTests.release.xcconfig"; path = "Target Support Files/Pods-CICDDemoTests/Pods-CICDDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		FC159B40B37AD10C3AA6BF90 /* Pods-CICDDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CICDDemo.release.xcconfig"; path = "Target Support Files/Pods-CICDDemo/Pods-CICDDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		8772D3D32E166D8700434836 /* CICDDemoUITests */ = {
 			isa = PBXGroup;
 			children = (
+				8772D3DD2E16853E00434836 /* SnapshotHelper.swift */,
 				8772D3D42E166D8700434836 /* CICDDemoUITests.swift */,
 				8772D3D62E166D8700434836 /* CICDDemoUITestsLaunchTests.swift */,
 			);
@@ -380,6 +383,7 @@
 			files = (
 				8772D3D72E166D8700434836 /* CICDDemoUITestsLaunchTests.swift in Sources */,
 				8772D3D52E166D8700434836 /* CICDDemoUITests.swift in Sources */,
+				8772D3DE2E16853E00434836 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -60,12 +60,22 @@ jobs:
       - name: Run tests with Fastlane
         run: bundle exec fastlane ios test
 
+       - name: Take screenshots with Fastlane
+        run: bundle exec fastlane screenshots
+
       - name: Upload test artifacts (screenshots + logs)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: iOS Test Email Cache
           path: fastlane/test_output
+
+      - name: Upload screenshots artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: iOS Screenshots
+          path: fastlane/screenshots
 
       - name: Generate changelog
         run: |

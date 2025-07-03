@@ -95,6 +95,18 @@ platform :ios do
     UI.message("📋 IPA location: #{ipa_path}")
   end
 
+  desc "Capture UI screenshots using snapshot"
+  lane :screenshots do
+    capture_screenshots(
+      workspace: "CICDDemo.xcworkspace",
+      scheme: "CICDDemo",
+      devices: ["iPhone 15"],
+      languages: ["en-US"],
+      clean: true,
+      output_directory: "./fastlane/screenshots"
+    )
+  end
+
   after_all do |lane|
     unless lane == :archive_development
       clean_build_artifacts
