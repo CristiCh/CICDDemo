@@ -17,8 +17,8 @@ platform :ios do
       destination: "platform=iOS Simulator,name=iPhone 15,OS=latest",
       output_directory: "fastlane/test_output",   #Screenshots and reports
       output_types: "junit,html",                 #Output formats
-      buildlog_path: "fastlane/test_output/logs"
-      only_testing: ["CICDDemoTests"] #Only run unit tests, skip UI tests
+      buildlog_path: "fastlane/test_output/logs",
+      only_testing: ["CICDDemoTests"] #Only run unit tests, skip UI tests "CICDDemoUITests"
     )
   end
 
