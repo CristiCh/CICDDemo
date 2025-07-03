@@ -60,7 +60,7 @@ jobs:
       - name: Run tests with Fastlane
         run: bundle exec fastlane ios test
 
-       - name: Take screenshots with Fastlane
+      - name: Take screenshots with Fastlane
         run: bundle exec fastlane screenshots
 
       - name: Upload test artifacts (screenshots + logs)
@@ -132,7 +132,6 @@ jobs:
           subject: "${{ needs.test.outputs.test_result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed"
           body: |
             ${{ needs.test.outputs.test_result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed
-
             • **Status:** ${{ needs.test.outputs.test_result }}
             • **Duration:** ${{ steps.duration.outputs.duration }}
             • **Repository:** ${{ github.repository }}
@@ -140,7 +139,6 @@ jobs:
             • **Branch:** ${{ github.ref }}
             • **Commit SHA:** ${{ github.sha }}
             • **Workflow URL:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
             -- GitHub Actions
           to: cristi.chertes@yahoo.com
           from: ${{ secrets.GMAIL_USERNAME }}
