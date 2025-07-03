@@ -137,4 +137,3 @@ jobs:
           secure: true
           attachments: |
             changelog.md
-            screenshots
