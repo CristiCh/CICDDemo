@@ -7,8 +7,8 @@ on:
       - main
       - master
       - '**'
-  schedule:
-    - cron: '30 13 * * *'
+  # schedule:
+  #   - cron: '30 13 * * *'
 
 jobs:
   test:
@@ -60,6 +60,13 @@ jobs:
       - name: Run tests with Fastlane
         run: bundle exec fastlane ios test
 
+      - name: Upload test artifacts (screenshots + logs)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: iOS Test Email Cache
+          path: fastlane/test_output
+
       - name: Generate changelog
         run: |
           echo "## Changelog - $(date)" > changelog.md
@@ -85,6 +92,12 @@ jobs:
           name: ios-changelog
           path: .
 
+      - name: Download screenshots artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: iOS Test Email Cache
+          path: screenshots
+
       - name: Record current time as end time
         id: end_time
         run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
@@ -99,7 +112,7 @@ jobs:
           seconds=$((duration % 60))
           echo "duration=${minutes}m ${seconds}s" >> "$GITHUB_OUTPUT"
 
-      - name: Send email notification with test result and changelog
+      - name: Send email notification with test result, changelog, and screenshots
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -122,4 +135,6 @@ jobs:
           to: cristi.chertes@yahoo.com
           from: ${{ secrets.GMAIL_USERNAME }}
           secure: true
-          attachments: changelog.md
+          attachments: |
+            changelog.md
+            screenshots
