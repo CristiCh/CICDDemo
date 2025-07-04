@@ -41,6 +41,8 @@ jobs:
       
       - name: Install Ruby dependencies
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
 
       - name: Install Bundler
         run: gem install bundler
@@ -86,18 +88,18 @@ jobs:
       - name: Take screenshots with Fastlane
         run: bundle exec fastlane screenshots
 
-      - name: Upload test artifacts (screenshots + logs)
+      - name: Upload Logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: iOS Test Email Cache
-          path: fastlane/test_output
+          name: Logs
+          path: fastlane/logs
 
-      - name: Upload screenshots artifact
+      - name: Upload Screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: iOS Screenshots
+          name: Screenshots
           path: fastlane/screenshots
 
       - name: Generate changelog
@@ -108,8 +110,8 @@ jobs:
       - name: Upload changelog artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ios-changelog
-          path: changelog.md
+          name: Changelog
+          path: fastlane/changelog.md
 
   notify:
     needs: test
