@@ -11,7 +11,16 @@ on:
   #   - cron: '30 13 * * *'
 
 jobs:
+  cancel-previous:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ secrets.PAT_TOKEN }}
+
   test:
+    needs: cancel-previous
     runs-on: macos-latest
     outputs:
       test_result: ${{ job.status }}
@@ -21,11 +30,6 @@ jobs:
       - name: Record start time
         id: start_time
         run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
-
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-            access_token: ${{ secrets.PAT_TOKEN }}
       
       - name: Checkout repo
         uses: actions/checkout@v3
