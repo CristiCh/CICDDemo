@@ -5,10 +5,10 @@ default_platform(:ios)
 
 # === Parameterization ===
 # Edit these variables to change configuration globally
-WORKSPACE = "CICDDemo.xcworkspace"
+WORKSPACE = ENV["WORKSPACE"]
 SCHEME = "CICDDemo"
-PROJECT = "CICDDemo.xcodeproj"
-DEVICE = "iPhone 15"
+PROJECT = ENV["PROJECT"]
+DEVICE = ENV["DEVICE"]
 DESTINATION = "platform=iOS Simulator,name=#{DEVICE},OS=latest"
 OUTPUT_DIR = "fastlane/artifacts"
 BUILDLOG_PATH = "#{OUTPUT_DIR}/logs"
