@@ -1,13 +1,18 @@
 # Fastfile for Free Apple Developer Account
+# This Fastfile automates testing, linting, building, archiving, and screenshots for the CICDDemo iOS app.
+# It is designed to work with a free Apple Developer account and CI environments.
+
 default_platform(:ios)
 
 platform :ios do
+  # Runs before any lane. Sets up CircleCI environment if running in CI.
   before_all do
     setup_circle_ci if ENV['CI']
   end
 
   desc "Run tests and export screenshots"
   lane :test do
+    # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
     run_tests(
       workspace: "CICDDemo.xcworkspace",
       scheme: "CICDDemo",
@@ -15,15 +20,16 @@ platform :ios do
       clean: true,
       code_coverage: false,
       destination: "platform=iOS Simulator,name=iPhone 15,OS=latest",
-      output_directory: "fastlane/test_output",   #Screenshots and reports
-      output_types: "junit,html",                 #Output formats
+      output_directory: "fastlane/test_output",   # Screenshots and reports
+      output_types: "junit,html",                 # Output formats
       buildlog_path: "fastlane/test_output/logs",
-      only_testing: ["CICDDemoTests"] #Only run unit tests, skip UI tests "CICDDemoUITests"
+      only_testing: ["CICDDemoTests"] # Only run unit tests, skip UI tests "CICDDemoUITests"
     )
   end
 
   desc "Run SwiftLint"
   lane :lint do
+    # Runs SwiftLint for code style checks using the config file
     swiftlint(
       mode: :lint,
       executable: "./Pods/SwiftLint/swiftlint",
@@ -34,6 +40,7 @@ platform :ios do
 
   desc "Build for simulator (no signing required)"
   lane :build_simulator do
+    # Builds the app for iOS Simulator without code signing
     gym(
       workspace: "CICDDemo.xcworkspace",
       scheme: "CICDDemo",
@@ -47,6 +54,7 @@ platform :ios do
 
   desc "Run all quality checks"
   lane :quality_check do
+    # Runs lint, test, and build_simulator lanes in sequence
     lint
     test
     build_simulator
@@ -54,6 +62,7 @@ platform :ios do
 
   desc "Run tests and collect coverage report"
   lane :coverage do
+    # Runs tests with code coverage enabled, then generates a coverage report with Slather
     run_tests(
       workspace: "CICDDemo.xcworkspace",
       scheme: "CICDDemo",
@@ -70,6 +79,7 @@ platform :ios do
 
   desc "Creates the ipa"
   lane :archive_development do
+    # Archives the app for development (Debug config), increments build number, outputs a timestamped IPA
     UI.important("⚠️  Requires a free Apple Developer account")
     timestamp = Time.now.strftime("%Y%m%d-%H%M%S")
     build_number = get_build_number(xcodeproj: "CICDDemo.xcodeproj")
@@ -98,6 +108,7 @@ platform :ios do
 
   desc "Capture UI screenshots using snapshot"
   lane :screenshots do
+    # Captures UI screenshots for iPhone 15 in English, outputs to fastlane/screenshots
     capture_screenshots(
       workspace: "CICDDemo.xcworkspace",
       scheme: "CICDDemo",
@@ -108,6 +119,7 @@ platform :ios do
     )
   end
 
+  # Runs after any lane. Cleans build artifacts unless archiving. Prints success message.
   after_all do |lane|
     unless lane == :archive_development
       clean_build_artifacts
@@ -115,6 +127,7 @@ platform :ios do
     UI.success("✅ Lane #{lane} completed successfully!")
   end
 
+  # Handles errors in any lane. Prints error and cleans build artifacts.
   error do |lane, exception|
     UI.error("❌ Error in lane #{lane}: #{exception.message}")
     clean_build_artifacts
