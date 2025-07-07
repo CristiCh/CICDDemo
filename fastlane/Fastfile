@@ -20,9 +20,9 @@ platform :ios do
       clean: true,
       code_coverage: false,
       destination: "platform=iOS Simulator,name=iPhone 15,OS=latest",
-      output_directory: "fastlane/test_output",   # Screenshots and reports
-      output_types: "junit,html",                 # Output formats
-      buildlog_path: "fastlane/test_output/logs",
+      output_directory: "fastlane/artifacts",   # Unified artifacts directory
+      output_types: "junit,html",               # Output formats
+      buildlog_path: "fastlane/artifacts/logs",
       only_testing: ["CICDDemoTests"] # Only run unit tests, skip UI tests "CICDDemoUITests"
     )
   end
@@ -68,12 +68,14 @@ platform :ios do
       scheme: "CICDDemo",
       device: "iPhone 15",
       code_coverage: true,
-      derived_data_path: "./DerivedData"
+      derived_data_path: "./DerivedData",
+      output_directory: "fastlane/artifacts"
     )
     slather(
       proj: "CICDDemo.xcodeproj",
       scheme: "CICDDemo",
-      workspace: "CICDDemo.xcworkspace"
+      workspace: "CICDDemo.xcworkspace",
+      output_directory: "fastlane/artifacts/coverage"
     )
   end
 
@@ -108,14 +110,14 @@ platform :ios do
 
   desc "Capture UI screenshots using snapshot"
   lane :screenshots do
-    # Captures UI screenshots for iPhone 15 in English, outputs to fastlane/screenshots
+    # Captures UI screenshots for iPhone 15 in English, outputs to fastlane/artifacts/screenshots
     capture_screenshots(
       workspace: "CICDDemo.xcworkspace",
       scheme: "CICDDemo",
       devices: ["iPhone 15"],
       languages: ["en-US"],
       clean: true,
-      output_directory: "./fastlane/screenshots"
+      output_directory: "./fastlane/artifacts/screenshots"
     )
   end
 
