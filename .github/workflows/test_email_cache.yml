@@ -8,7 +8,7 @@ on:
       - master
       - '**'
   schedule:
-    - cron: '10 8 * * *'
+    - cron: '00 21 * * *'
 
 jobs:
   cancel-previous:
