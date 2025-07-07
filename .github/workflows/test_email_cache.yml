@@ -148,9 +148,10 @@ jobs:
             • **Branch:** ${{ github.ref }}
             • **Commit SHA:** ${{ github.sha }}
             • **Workflow URL:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            
             -- GitHub Actions
           to: cristi.chertes@yahoo.com
           from: ${{ secrets.GMAIL_USERNAME }}
           secure: true
           attachments: |
-            changelog.md
+            fastlane/artifacts/changelog.md
