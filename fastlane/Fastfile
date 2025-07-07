@@ -6,15 +6,15 @@ default_platform(:ios)
 # === Parameterization ===
 # Edit these variables to change configuration globally
 WORKSPACE = ENV['WORKSPACE']
-SCHEME = "CICDDemo"
-PROJECT = "CICDDemo.xcodeproj"
-DEVICE = "iPhone 15"
-DESTINATION = "platform=iOS Simulator,name=#{DEVICE},OS=latest"
-OUTPUT_DIR = "fastlane/artifacts"
-BUILDLOG_PATH = "#{OUTPUT_DIR}/logs"
-SCREENSHOTS_DIR = "#{OUTPUT_DIR}/screenshots"
-COVERAGE_DIR = "#{OUTPUT_DIR}/coverage"
-LANGUAGES = ["en-US"]
+SCHEME = ENV['SCHEME']
+PROJECT = ENV['PROJECT']
+DEVICE = ENV['DEVICE']
+DESTINATION = ENV['DESTINATION']
+OUTPUT_DIR = ENV['OUTPUT_DIR']
+BUILDLOG_PATH = ENV['BUILDLOG_PATH']
+SCREENSHOTS_DIR = ENV['SCREENSHOTS_DIR']
+COVERAGE_DIR = ENV['COVERAGE_DIR']
+LANGUAGES = ENV['LANGUAGES']
 
 platform :ios do
   # Runs before any lane. Sets up CircleCI environment if running in CI.
