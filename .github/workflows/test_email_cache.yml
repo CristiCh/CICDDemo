@@ -77,14 +77,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: iOS Test Email Cache
-          path: fastlane/test_output
+          path: fastlane/artifacts
 
       - name: Upload screenshots artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: iOS Screenshots
-          path: fastlane/screenshots
+          path: fastlane/artifacts/screenshots
 
       - name: Generate changelog
         run: |
@@ -95,7 +95,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ios-changelog
-          path: changelog.md
+          path: fastlane/artifacts
 
   notify:
     needs: test
