@@ -6,7 +6,7 @@ default_platform(:ios)
 # === Parameterization ===
 # Edit these variables to change configuration globally
 WORKSPACE = ENV['WORKSPACE'] || "CICDDemo.xcodeproj"
-SCHEME = ENV['SCHEME'] || "CICDDemo"
+SCHEME = "CICDDemo"
 PROJECT = ENV['PROJECT'] || "CICDDemo.xcodeproj"
 DEVICE = ENV['DEVICE'] || "iPhone 15"
 DESTINATION = ENV['DESTINATION'] || "platform=iOS Simulator,name=#{DEVICE},OS=latest"
