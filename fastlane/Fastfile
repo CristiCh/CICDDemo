@@ -27,7 +27,7 @@ platform :ios do
     # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
     run_tests(
       workspace: WORKSPACE,
-      scheme: SCHEME,
+      scheme: "CICDDemo",
       device: DEVICE,
       clean: true,
       code_coverage: false,
@@ -35,7 +35,7 @@ platform :ios do
       output_directory: OUTPUT_DIR,   #Screenshots and reports
       output_types: "junit,html",                 #Output formats
       buildlog_path: BUILDLOG_PATH,
-      only_testing: ["#{SCHEME}Tests"] #Only run unit tests, skip UI tests "CICDDemoUITests"
+      only_testing: ["CICDDemoTests"] #Only run unit tests, skip UI tests "CICDDemoUITests"
     )
   end
 
