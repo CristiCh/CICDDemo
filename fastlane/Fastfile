@@ -1,8 +1,20 @@
 # Fastfile for Free Apple Developer Account
 # This Fastfile automates testing, linting, building, archiving, and screenshots for the CICDDemo iOS app.
 # It is designed to work with a free Apple Developer account and CI environments.
-
 default_platform(:ios)
+
+# === Parameterization ===
+# Edit these variables to change configuration globally
+WORKSPACE = "CICDDemo.xcworkspace"
+SCHEME = "CICDDemo"
+PROJECT = "CICDDemo.xcodeproj"
+DEVICE = "iPhone 15"
+DESTINATION = "platform=iOS Simulator,name=#{DEVICE},OS=latest"
+OUTPUT_DIR = "fastlane/artifacts"
+BUILDLOG_PATH = "#{OUTPUT_DIR}/logs"
+SCREENSHOTS_DIR = "#{OUTPUT_DIR}/screenshots"
+COVERAGE_DIR = "#{OUTPUT_DIR}/coverage"
+LANGUAGES = ["en-US"]
 
 platform :ios do
   # Runs before any lane. Sets up CircleCI environment if running in CI.
@@ -14,16 +26,16 @@ platform :ios do
   lane :test do
     # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
     run_tests(
-      workspace: "CICDDemo.xcworkspace",
-      scheme: "CICDDemo",
-      device: "iPhone 15",
+      workspace: WORKSPACE,
+      scheme: SCHEME,
+      device: DEVICE,
       clean: true,
       code_coverage: false,
-      destination: "platform=iOS Simulator,name=iPhone 15,OS=latest",
-      output_directory: "fastlane/artifacts",   # Unified artifacts directory
-      output_types: "junit,html",               # Output formats
-      buildlog_path: "fastlane/artifacts/logs",
-      only_testing: ["CICDDemoTests"] # Only run unit tests, skip UI tests "CICDDemoUITests"
+      destination: DESTINATION,
+      output_directory: OUTPUT_DIR,   #Screenshots and reports
+      output_types: "junit,html",                 #Output formats
+      buildlog_path: BUILDLOG_PATH,
+      only_testing: ["#{SCHEME}Tests"] #Only run unit tests, skip UI tests "CICDDemoUITests"
     )
   end
 
@@ -42,10 +54,10 @@ platform :ios do
   lane :build_simulator do
     # Builds the app for iOS Simulator without code signing
     gym(
-      workspace: "CICDDemo.xcworkspace",
-      scheme: "CICDDemo",
+      workspace: WORKSPACE,
+      scheme: SCHEME,
       configuration: "Debug",
-      destination: "platform=iOS Simulator,name=iPhone 15",
+      destination: DESTINATION,
       skip_codesigning: true,
       clean: false,
       derived_data_path: "./DerivedData",
@@ -64,18 +76,18 @@ platform :ios do
   lane :coverage do
     # Runs tests with code coverage enabled, then generates a coverage report with Slather
     run_tests(
-      workspace: "CICDDemo.xcworkspace",
-      scheme: "CICDDemo",
-      device: "iPhone 15",
+      workspace: WORKSPACE,
+      scheme: SCHEME,
+      device: DEVICE,
       code_coverage: true,
       derived_data_path: "./DerivedData",
-      output_directory: "fastlane/artifacts"
+      output_directory: OUTPUT_DIR
     )
     slather(
-      proj: "CICDDemo.xcodeproj",
-      scheme: "CICDDemo",
-      workspace: "CICDDemo.xcworkspace",
-      output_directory: "fastlane/artifacts/coverage"
+      proj: PROJECT,
+      scheme: SCHEME,
+      workspace: WORKSPACE,
+      output_directory: COVERAGE_DIR
     )
   end
 
@@ -84,17 +96,17 @@ platform :ios do
     # Archives the app for development (Debug config), increments build number, outputs a timestamped IPA
     UI.important("⚠️  Requires a free Apple Developer account")
     timestamp = Time.now.strftime("%Y%m%d-%H%M%S")
-    build_number = get_build_number(xcodeproj: "CICDDemo.xcodeproj")
+    build_number = get_build_number(xcodeproj: PROJECT)
     new_build_number = build_number.to_i + 1
 
     increment_build_number(
       build_number: new_build_number.to_s,
-      xcodeproj: "CICDDemo.xcodeproj"
+      xcodeproj: PROJECT
     )
 
     ipa_path = gym(
-      workspace: "CICDDemo.xcworkspace",
-      scheme: "CICDDemo",
+      workspace: WORKSPACE,
+      scheme: SCHEME,
       configuration: "Debug",
       export_method: "development",
       clean: true,
@@ -112,12 +124,12 @@ platform :ios do
   lane :screenshots do
     # Captures UI screenshots for iPhone 15 in English, outputs to fastlane/artifacts/screenshots
     capture_screenshots(
-      workspace: "CICDDemo.xcworkspace",
-      scheme: "CICDDemo",
-      devices: ["iPhone 15"],
-      languages: ["en-US"],
+      workspace: WORKSPACE,
+      scheme: SCHEME,
+      devices: [DEVICE],
+      languages: LANGUAGES,
       clean: true,
-      output_directory: "./fastlane/artifacts/screenshots"
+      output_directory: SCREENSHOTS_DIR
     )
   end
 
