@@ -5,7 +5,7 @@ default_platform(:ios)
 
 # === Parameterization ===
 # Edit these variables to change configuration globally
-WORKSPACE = "CICDDemo.xcworkspace"
+WORKSPACE = ENV['WORKSPACE']
 SCHEME = "CICDDemo"
 PROJECT = "CICDDemo.xcodeproj"
 DEVICE = "iPhone 15"
