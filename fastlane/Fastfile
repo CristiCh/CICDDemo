@@ -7,8 +7,8 @@ default_platform(:ios)
 # Edit these variables to change configuration globally
 WORKSPACE = ENV["WORKSPACE"]
 SCHEME = "CICDDemo"
-PROJECT = ENV["PROJECT"]
-DEVICE = ENV["DEVICE"]
+PROJECT = "CICDDemo.xcodeproj"
+DEVICE = "iPhone 15"
 DESTINATION = "platform=iOS Simulator,name=#{DEVICE},OS=latest"
 OUTPUT_DIR = "fastlane/artifacts"
 BUILDLOG_PATH = "#{OUTPUT_DIR}/logs"
