@@ -46,7 +46,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "874F2D462E0E6A6C003612FB"
+               BlueprintIdentifier = "8772D3D12E166D8700434836"
                BuildableName = "CICDDemoUITests.xctest"
                BlueprintName = "CICDDemoUITests"
                ReferencedContainer = "container:CICDDemo.xcodeproj">
