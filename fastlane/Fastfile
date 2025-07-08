@@ -10,7 +10,7 @@ SCHEME = "CICDDemo"
 PROJECT = "CICDDemo.xcodeproj"
 DEVICE = "iPhone 15"
 DESTINATION = "platform=iOS Simulator,name=#{DEVICE},OS=latest"
-OUTPUT_DIR = "fastlane/artifacts"
+OUTPUT_DIR = ENV["OUTPUT_DYR"]
 BUILDLOG_DIR = "#{OUTPUT_DIR}/logs"
 SCREENSHOTS_DIR = "#{OUTPUT_DIR}/screenshots"
 COVERAGE_DIR = "#{OUTPUT_DIR}/coverage"
