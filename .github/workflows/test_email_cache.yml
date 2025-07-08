@@ -66,6 +66,15 @@ jobs:
           sudo gem install cocoapods
           pod install --verbose
 
+      - name: Cache DerivedData
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./DerivedData
+          key: ${{ runner.os }}-deriveddata-${{ hashFiles('**/*.xcodeproj/**', 'Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-deriveddata-
+            
       - name: Run tests with Fastlane
         run: bundle exec fastlane ios test
 
