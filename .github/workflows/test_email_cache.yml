@@ -56,7 +56,6 @@ jobs:
       - name: Install Ruby dependencies
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
           ruby-version: ${{ env.FASTLANE_RUBY_VERSION }}
       - name: Install Bundler and Gems
         run: |
