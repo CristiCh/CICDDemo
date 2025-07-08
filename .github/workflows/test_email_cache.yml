@@ -110,6 +110,7 @@ jobs:
           path: ${{ env.SCREENSHOTS_DIR }}
       - name: Generate changelog
         run: |
+          mkdir -p ${{ env.OUTPUT_DIR }}
           echo "## Changelog - $(date)" > ${{ env.OUTPUT_DIR }}/changelog.md
           git log -n 20 --pretty=format:"- %h %s (%an)" >> ${{ env.OUTPUT_DIR }}/changelog.md
       - name: Upload changelog artifact
