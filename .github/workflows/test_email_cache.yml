@@ -1,15 +1,20 @@
 name: iOS Test Email Cache
 
 env:
-  FASTLANE_WORKSPACE: CICDDemo.xcworkspace
-  FASTLANE_SCHEME: CICDDemo
-  FASTLANE_DEVICE: iPhone 15
-  FASTLANE_OUTPUT_DIR: fastlane/artifacts
-  FASTLANE_SCREENSHOTS_DIR: fastlane/artifacts/screenshots
-  FASTLANE_RUBY_VERSION: 3.2.2
   FASTLANE_TEST_LANE: test
   FASTLANE_SCREENSHOTS_LANE: screenshots
-  FASTLANE_CHANGELOG_PATH: fastlane/artifacts/changelog.md
+  BUILDLOG_DIR: ${{ vars.BUILDLOG_DIR }}
+  COVERAGE_DIR: ${{ vars.COVERAGE_DIR }}
+  DERIVEDDATA_DIR: ${{ vars.DERIVEDDATA_DIR }}
+  DESTINATION: ${{ vars.DESTINATION }}
+  DEVICE: ${{ vars.DEVICE }}
+  LANGUAGES: ${{ vars.LANGUAGES }}
+  OUTPUT_DIR: ${{ vars.OUTPUT_DYR }}
+  PROJECT: ${{ vars.PROJECT }}
+  SCHEME: ${{ vars.SCHEME }}
+  SCREENSHOTS_DIR: ${{ vars.SCREENSHOTS_DIR }}
+  WORKSPACE: ${{ vars.WORKSPACE }}
+  RUBY_VERSION: ${{ vars.RUBY_VERSION }}
 
 on:
   workflow_dispatch:
@@ -56,7 +61,7 @@ jobs:
       - name: Install Ruby dependencies
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ env.FASTLANE_RUBY_VERSION }}
+          ruby-version: ${{ env.RUBY_VERSION }}
       - name: Install Bundler and Gems
         run: |
           gem install bundler
@@ -80,7 +85,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ./DerivedData
+            ${{ env.DERIVEDDATA_DIR }}
           key: ${{ runner.os }}-deriveddata-${{ hashFiles('**/*.xcodeproj/**', 'Podfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-deriveddata-
@@ -95,23 +100,23 @@ jobs:
         with:
 
           name: ios-artifacts
-          path: ${{ env.FASTLANE_OUTPUT_DIR }}
+          path: ${{ env.OUTPUT_DIR }}
       - name: Upload screenshots artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
 
           name: ios-screenshots
-          path: ${{ env.FASTLANE_SCREENSHOTS_DIR }}
+          path: ${{ env.SCREENSHOTS_DIR }}
       - name: Generate changelog
         run: |
-          echo "## Changelog - $(date)" > ${{ env.FASTLANE_CHANGELOG_PATH }}
-          git log -n 20 --pretty=format:"- %h %s (%an)" >> ${{ env.FASTLANE_CHANGELOG_PATH }}
+          echo "## Changelog - $(date)" > ${{ env.OUTPUT_DIR }}/changelog.md
+          git log -n 20 --pretty=format:"- %h %s (%an)" >> ${{ env.OUTPUT_DIR }}/changelog.md
       - name: Upload changelog artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-changelog
-          path: ${{ env.FASTLANE_CHANGELOG_PATH }}
+          path: ${{ env.OUTPUT_DIR }}/changelog.md
 
   notify:
     needs: test
@@ -125,14 +130,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ios-changelog
-          path: fastlane/artifacts
-
+          path: ${{ env.OUTPUT_DIR }}
       - name: Download screenshots artifact
         uses: actions/download-artifact@v4
         with:
-
           name: ios-artifacts
-          path: fastlane/artifacts
+          path: ${{ env.OUTPUT_DIR }}
       - name: Record current time as end time
         id: end_time
         run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
@@ -170,4 +173,4 @@ jobs:
           from: ${{ secrets.GMAIL_USERNAME }}
           secure: true
           attachments: |
-            ${{ env.FASTLANE_CHANGELOG_PATH }}
+            ${{ env.OUTPUT_DIR }}/changelog.md
