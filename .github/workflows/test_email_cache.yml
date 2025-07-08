@@ -163,4 +163,4 @@ jobs:
           from: ${{ secrets.GMAIL_USERNAME }}
           secure: true
           attachments: |
-            fastlane/artifacts/changelog.md
+            fastlane/artifacts/logs/changelog.md
