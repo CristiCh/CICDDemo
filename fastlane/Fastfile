@@ -14,6 +14,7 @@ OUTPUT_DIR = ENV["OUTPUT_DYR"] || "./fastlane/artifacts"
 BUILDLOG_DIR = "#{OUTPUT_DIR}/logs"
 SCREENSHOTS_DIR = "#{OUTPUT_DIR}/screenshots"
 COVERAGE_DIR = "#{OUTPUT_DIR}/coverage"
+DERIVEDDATA_DIR = "./DerivedData"
 LANGUAGES = ["en-US"]
 
 platform :ios do
@@ -35,7 +36,7 @@ platform :ios do
       output_directory: OUTPUT_DIR,   #Screenshots and reports
       output_types: "junit,html",                 #Output formats
       buildlog_path: BUILDLOG_DIR,
-      derived_data_path: "./DerivedData",
+      derived_data_path: DERIVEDDATA_DIR,
       only_testing: ["#{SCHEME}Tests"] #Only run unit tests, skip UI tests "CICDDemoUITests"
     )
   end
@@ -61,7 +62,7 @@ platform :ios do
       destination: DESTINATION,
       skip_codesigning: true,
       clean: false,
-      derived_data_path: "./DerivedData",
+      derived_data_path: DERIVEDDATA_DIR,
     )
   end
 
@@ -81,7 +82,7 @@ platform :ios do
       scheme: SCHEME,
       device: DEVICE,
       code_coverage: true,
-      derived_data_path: "./DerivedData",
+      derived_data_path: DERIVEDDATA_DIR,
       output_directory: OUTPUT_DIR
     )
     slather(
