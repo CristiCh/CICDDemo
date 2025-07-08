@@ -35,6 +35,7 @@ platform :ios do
       output_directory: OUTPUT_DIR,   #Screenshots and reports
       output_types: "junit,html",                 #Output formats
       buildlog_path: BUILDLOG_DIR,
+      derived_data_path: "./DerivedData",
       only_testing: ["#{SCHEME}Tests"] #Only run unit tests, skip UI tests "CICDDemoUITests"
     )
   end
