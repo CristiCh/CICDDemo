@@ -1,5 +1,16 @@
 name: iOS Test Email Cache
 
+env:
+  FASTLANE_WORKSPACE: CICDDemo.xcworkspace
+  FASTLANE_SCHEME: CICDDemo
+  FASTLANE_DEVICE: iPhone 15
+  FASTLANE_OUTPUT_DIR: fastlane/artifacts
+  FASTLANE_SCREENSHOTS_DIR: fastlane/artifacts/screenshots
+  FASTLANE_RUBY_VERSION: 3.2.2
+  FASTLANE_TEST_LANE: test
+  FASTLANE_SCREENSHOTS_LANE: screenshots
+  FASTLANE_CHANGELOG_PATH: fastlane/artifacts/changelog.md
+
 on:
   workflow_dispatch:
   push:
@@ -46,7 +57,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
-
+          ruby-version: ${{ env.FASTLANE_RUBY_VERSION }}
       - name: Install Bundler and Gems
         run: |
           gem install bundler
@@ -76,35 +87,32 @@ jobs:
             ${{ runner.os }}-deriveddata-
             
       - name: Run tests with Fastlane
-        run: bundle exec fastlane ios test
-
+        run: bundle exec fastlane ios ${{ env.FASTLANE_TEST_LANE }}
       - name: Take screenshots with Fastlane
-        run: bundle exec fastlane screenshots
-
+        run: bundle exec fastlane ${{ env.FASTLANE_SCREENSHOTS_LANE }}
       - name: Upload test artifacts (screenshots + logs)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: iOS Test Email Cache
-          path: fastlane/artifacts
 
+          name: ios-artifacts
+          path: ${{ env.FASTLANE_OUTPUT_DIR }}
       - name: Upload screenshots artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: iOS Screenshots
-          path: fastlane/artifacts/screenshots
 
+          name: ios-screenshots
+          path: ${{ env.FASTLANE_SCREENSHOTS_DIR }}
       - name: Generate changelog
         run: |
-          echo "## Changelog - $(date)" > changelog.md
-          git log -n 20 --pretty=format:"- %h %s (%an)" >> changelog.md
-
+          echo "## Changelog - $(date)" > ${{ env.FASTLANE_CHANGELOG_PATH }}
+          git log -n 20 --pretty=format:"- %h %s (%an)" >> ${{ env.FASTLANE_CHANGELOG_PATH }}
       - name: Upload changelog artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-changelog
-          path: fastlane/artifacts
+          path: ${{ env.FASTLANE_CHANGELOG_PATH }}
 
   notify:
     needs: test
@@ -123,9 +131,9 @@ jobs:
       - name: Download screenshots artifact
         uses: actions/download-artifact@v4
         with:
-          name: iOS Test Email Cache
-          path: fastlane/artifacts/screenshots
 
+          name: ios-artifacts
+          path: fastlane/artifacts
       - name: Record current time as end time
         id: end_time
         run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
@@ -163,4 +171,4 @@ jobs:
           from: ${{ secrets.GMAIL_USERNAME }}
           secure: true
           attachments: |
-            fastlane/artifacts/logs/changelog.md
+            ${{ env.FASTLANE_CHANGELOG_PATH }}
