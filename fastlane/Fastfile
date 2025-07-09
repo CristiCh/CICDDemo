@@ -14,7 +14,7 @@ BUILDLOG_DIR = "#{OUTPUT_DIR}/#{ENV["BUILDLOG_DIR"]}"
 SCREENSHOTS_DIR = "#{OUTPUT_DIR}/#{ENV["SCREENSHOTS_DIR"]}"
 COVERAGE_DIR = "#{OUTPUT_DIR}/#{ENV["COVERAGE_DIR"]}"
 DERIVEDDATA_DIR = ENV["DERIVEDDATA_DIR"]
-LANGUAGES = ["en-US"]
+LANGUAGES = ENV["LANGUAGES"]
 
 platform :ios do
   # Runs before any lane. Sets up CircleCI environment if running in CI.
