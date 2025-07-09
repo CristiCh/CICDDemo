@@ -24,22 +24,22 @@ platform :ios do
   end
 
   desc "Run tests and export screenshots"
-    lane :test do
-      # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
-      run_tests(
-        workspace: ENV["WORKSPACE"],
-        scheme: SCHEME,
-        device: ENV["DEVICE"],
-        clean: true,
-        code_coverage: false,
-        destination: ENV["DESTINATION"],
-        output_directory: ENV["OUTPUT_DIR"],       # Screenshots and reports
-        output_types: "junit,html",                # Output formats
-        buildlog_path: ENV["BUILDLOG_DIR"],
-        derived_data_path: ENV["DERIVEDDATA_DIR"],
-        only_testing: ["#{ENV['SCHEME']}Tests"]     # Only run unit tests, skip UI tests
-      )
-    end
+  lane :test do
+    # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
+    run_tests(
+      workspace: ENV["WORKSPACE"],
+      scheme: SCHEME,
+      device: DEVICE,
+      clean: true,
+      code_coverage: false,
+      destination: ENV["DESTINATION"],
+      output_directory: ENV["OUTPUT_DIR"],       # Screenshots and reports
+      output_types: "junit,html",                # Output formats
+      buildlog_path: ENV["BUILDLOG_DIR"],
+      derived_data_path: ENV["DERIVEDDATA_DIR"],
+      only_testing: ["#{ENV['SCHEME']}Tests"]     # Only run unit tests, skip UI tests
+     )
+  end
 
   desc "Run SwiftLint"
   lane :lint do
