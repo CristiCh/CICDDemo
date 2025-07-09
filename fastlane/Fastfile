@@ -36,7 +36,7 @@ platform :ios do
     UI.message("SCHEME: #{SCHEME}")
     UI.message("DEVICE: #{DEVICE}")
     UI.message("LANGUAGES: #{LANGUAGES}")
-    UI.message("DESTINATION: #{DESTINATION}")
+    # UI.message("DESTINATION: #{DESTINATION}")
     UI.message("OUTPUT_DIR: #{OUTPUT_DIR}")
     UI.message("SCREENSHOTS_DIR: #{SCREENSHOTS_DIR}")
     UI.message("COVERAGE_DIR: #{COVERAGE_DIR}")
@@ -77,7 +77,7 @@ platform :ios do
       workspace: WORKSPACE,
       scheme: SCHEME,
       configuration: "Debug",
-      destination: DESTINATION,
+      # destination: DESTINATION,
       skip_codesigning: true,
       clean: false,
       derived_data_path: DERIVEDDATA_DIR,

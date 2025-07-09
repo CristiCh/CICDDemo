@@ -7,7 +7,7 @@ env:
   WORKSPACE: ${{ vars.WORKSPACE }}
   PROJECT: ${{ vars.PROJECT }}
   SCHEME: ${{ vars.SCHEME }}
-  DESTINATION: ${{ vars.DESTINATION }}
+#  DESTINATION: ${{ vars.DESTINATION }}
   DEVICE: ${{ vars.DEVICE }}
   LANGUAGES: ${{ vars.LANGUAGES }}
   OUTPUT_DIR: ${{ vars.OUTPUT_DYR }}
