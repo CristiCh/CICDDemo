@@ -1,8 +1,8 @@
 # SwiftLint Configuration File
 
 disabled_rules: # rule identifiers to exclude from running
-  - trailing_whitespace
-  - line_length
+#  - trailing_whitespace
+#  - line_length
 
 opt_in_rules: # some rules are only opt-in
   - empty_count
@@ -19,7 +19,7 @@ excluded: # paths to ignore during linting. Optional.
 
 # Customize rules
 line_length:
-  warning: 120
+  warning: 12
   error: 200
 
 trailing_whitespace:
