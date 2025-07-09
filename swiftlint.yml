@@ -21,7 +21,6 @@ excluded: # paths to ignore during linting. Optional.
 line_length:
   warning: 120
   error: 20
-  severity: warning
 
 trailing_whitespace:
   ignores_empty_lines: true
