@@ -32,7 +32,7 @@ platform :ios do
       device: DEVICE,
       clean: true,
       code_coverage: false,
-      destination: ENV["DESTINATION"],
+      destination: DESTINATION,
       output_directory: ENV["OUTPUT_DIR"],       # Screenshots and reports
       output_types: "junit,html",                # Output formats
       buildlog_path: ENV["BUILDLOG_DIR"],
