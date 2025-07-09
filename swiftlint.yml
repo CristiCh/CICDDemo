@@ -1,0 +1,35 @@
+# SwiftLint Configuration File
+
+disabled_rules: # rule identifiers to exclude from running
+  - trailing_whitespace
+  - line_length
+
+opt_in_rules: # some rules are only opt-in
+  - empty_count
+  - explicit_init
+
+included: # paths to include during linting. Optional.
+  - CICDDemo
+
+excluded: # paths to ignore during linting. Optional.
+  - Pods
+  - fastlane
+  - CICDDemo.xcworkspace
+  - CICDDemo.xcodeproj
+
+# Customize rules
+line_length:
+  warning: 120
+  error: 200
+
+trailing_whitespace:
+  ignores_empty_lines: true
+  ignores_comments: true
+
+type_body_length:
+  warning: 300
+  error: 400
+
+function_body_length:
+  warning: 40
+  error: 80

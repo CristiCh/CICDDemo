@@ -91,6 +91,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-deriveddata-
             
+      - name: Run SwiftLint with Fastlane
+        run: bundle exec fastlane lint
+            
       - name: Print fastlane env vars
         run: bundle exec fastlane debug_env
             
