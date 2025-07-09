@@ -9,8 +9,7 @@ WORKSPACE = ENV["WORKSPACE"]
 SCHEME = ENV["SCHEME"]
 PROJECT = ENV["PROJECT"]
 DEVICE = ENV["DEVICE"]
-DESTINATION = ENV["DESTINATION"]
-OUTPUT_DIR = ENV["OUTPUT_DYR"] || "./fastlane/artifacts"
+OUTPUT_DIR = ENV["OUTPUT_DIR"]
 BUILDLOG_DIR = "#{OUTPUT_DIR}/logs"
 SCREENSHOTS_DIR = "#{OUTPUT_DIR}/screenshots"
 COVERAGE_DIR = "#{OUTPUT_DIR}/coverage"
@@ -32,14 +31,6 @@ platform :ios do
     UI.message("OUTPUT_DIR: #{ENV['OUTPUT_DIR']}")
     UI.message("BUILDLOG_DIR: #{ENV['BUILDLOG_DIR']}")
     UI.message("DERIVEDDATA_DIR: #{ENV['DERIVEDDATA_DIR']}")
-    
-    UI.message("WORKSPACE: #{WORKSPACE}")
-    UI.message("SCHEME: #{SCHEME}")
-    UI.message("DEVICE: #{DEVICE}")
-    UI.message("DESTINATION: #{DESTINATION}")
-    UI.message("OUTPUT_DIR: #{OUTPUT_DIR}")
-    UI.message("BUILDLOG_DIR: #{BUILDLOG_DIR}")
-    UI.message("DERIVEDDATA_DIR: #{DERIVEDDATA_DIR}")
   
     # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
     run_tests(
