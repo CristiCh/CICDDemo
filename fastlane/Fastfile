@@ -8,7 +8,7 @@ default_platform(:ios)
 WORKSPACE = ENV["WORKSPACE"] 
 SCHEME = ENV["SCHEME"]
 PROJECT = ENV["PROJECT"]
-DEVICE = "iPhone 15"
+DEVICE = ENV["DEVICE"]
 DESTINATION = "platform=iOS Simulator,name=#{DEVICE},OS=latest"
 OUTPUT_DIR = ENV["OUTPUT_DYR"] || "./fastlane/artifacts"
 BUILDLOG_DIR = "#{OUTPUT_DIR}/logs"
