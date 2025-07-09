@@ -25,6 +25,14 @@ platform :ios do
 
   desc "Run tests and export screenshots"
   lane :test do
+    UI.message("WORKSPACE: #{ENV['WORKSPACE']}")
+    UI.message("SCHEME: #{ENV['SCHEME']}")
+    UI.message("DEVICE: #{ENV['DEVICE']}")
+    UI.message("DESTINATION: #{ENV['DESTINATION']}")
+    UI.message("OUTPUT_DIR: #{ENV['OUTPUT_DIR']}")
+    UI.message("BUILDLOG_DIR: #{ENV['BUILDLOG_DIR']}")
+    UI.message("DERIVEDDATA_DIR: #{ENV['DERIVEDDATA_DIR']}")
+  
     # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
     run_tests(
       workspace: ENV["WORKSPACE"],
@@ -33,11 +41,11 @@ platform :ios do
       clean: true,
       code_coverage: false,
       destination: DESTINATION,
-      output_directory: ENV["OUTPUT_DIR"],       # Screenshots and reports
+      output_directory: OUTPUT_DIR,       # Screenshots and reports
       output_types: "junit,html",                # Output formats
-      buildlog_path: ENV["BUILDLOG_DIR"],
-      derived_data_path: ENV["DERIVEDDATA_DIR"],
-      only_testing: ["#{ENV['SCHEME']}Tests"]     # Only run unit tests, skip UI tests
+      buildlog_path: BUILDLOG_DIR,
+      derived_data_path: DERIVEDDATA_DIR,
+      only_testing: ["#{SCHEME}Tests"] #Only run unit tests, skip UI tests "CICDDemoUITests"
      )
   end
 
