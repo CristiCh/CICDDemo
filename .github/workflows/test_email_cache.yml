@@ -1,20 +1,20 @@
 name: iOS Test Email Cache
 
 env:
+  RUBY_VERSION: ${{ vars.RUBY_VERSION }}
   FASTLANE_TEST_LANE: test
   FASTLANE_SCREENSHOTS_LANE: screenshots
-  BUILDLOG_DIR: ${{ vars.BUILDLOG_DIR }}
-  COVERAGE_DIR: ${{ vars.COVERAGE_DIR }}
-  DERIVEDDATA_DIR: ${{ vars.DERIVEDDATA_DIR }}
+  WORKSPACE: ${{ vars.WORKSPACE }}
+  PROJECT: ${{ vars.PROJECT }}
+  SCHEME: ${{ vars.SCHEME }}
   DESTINATION: ${{ vars.DESTINATION }}
   DEVICE: ${{ vars.DEVICE }}
   LANGUAGES: ${{ vars.LANGUAGES }}
   OUTPUT_DIR: ${{ vars.OUTPUT_DYR }}
-  PROJECT: ${{ vars.PROJECT }}
-  SCHEME: ${{ vars.SCHEME }}
+  BUILDLOG_DIR: ${{ vars.BUILDLOG_DIR }}
+  COVERAGE_DIR: ${{ vars.COVERAGE_DIR }}
   SCREENSHOTS_DIR: ${{ vars.SCREENSHOTS_DIR }}
-  WORKSPACE: ${{ vars.WORKSPACE }}
-  RUBY_VERSION: ${{ vars.RUBY_VERSION }}
+  DERIVEDDATA_DIR: ${{ vars.DERIVEDDATA_DIR }}
 
 on:
   workflow_dispatch:
