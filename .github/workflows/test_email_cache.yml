@@ -94,8 +94,8 @@ jobs:
       - name: Run tests with Fastlane
         run: bundle exec fastlane ios ${{ env.FASTLANE_TEST_LANE }}
       
-      - name: Take screenshots with Fastlane
-        run: bundle exec fastlane ${{ env.FASTLANE_SCREENSHOTS_LANE }}
+#      - name: Take screenshots with Fastlane
+#        run: bundle exec fastlane ${{ env.FASTLANE_SCREENSHOTS_LANE }}
       
       - name: Upload test artifacts (screenshots + logs)
         if: always()
@@ -104,14 +104,6 @@ jobs:
 
           name: ios-artifacts
           path: ${{ env.OUTPUT_DIR }}
-     
-      - name: Upload screenshots artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-
-          name: ios-screenshots
-          path: ${{ env.SCREENSHOTS_DIR }}
      
       - name: Generate changelog
         run: |
