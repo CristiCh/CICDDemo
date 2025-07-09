@@ -28,7 +28,7 @@ platform :ios do
       # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
       run_tests(
         workspace: ENV["WORKSPACE"],
-        scheme: ENV["SCHEME"],
+        scheme: SCHEME,
         device: ENV["DEVICE"],
         clean: true,
         code_coverage: false,
