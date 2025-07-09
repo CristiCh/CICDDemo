@@ -48,7 +48,7 @@ platform :ios do
       device: DEVICE,
       clean: true,
       code_coverage: false,
-      destination: DESTINATION,
+      destination: "platform=iOS Simulator,name=#{DEVICE},OS=latest",
       output_directory: OUTPUT_DIR,       # Screenshots and reports
       output_types: "junit,html",                # Output formats
       buildlog_path: BUILDLOG_DIR,
