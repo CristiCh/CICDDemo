@@ -11,9 +11,9 @@ PROJECT = ENV["PROJECT"]
 DEVICE = ENV["DEVICE"]
 OUTPUT_DIR = ENV["OUTPUT_DIR"]
 BUILDLOG_DIR = "#{OUTPUT_DIR}/#{ENV["BUILDLOG_DIR"]}"
-SCREENSHOTS_DIR = "#{SCREENSHOTS_DIR}/screenshots"
-COVERAGE_DIR = "#{OUTPUT_DIR}/coverage"
-DERIVEDDATA_DIR = ENV["DERIVEDDATA_DIR"] || "./DerivedData"
+SCREENSHOTS_DIR = "#{OUTPUT_DIR}/#{ENV["SCREENSHOTS_DIR"]}"
+COVERAGE_DIR = "#{OUTPUT_DIR}/#{ENV["COVERAGE_DIR"]}"
+DERIVEDDATA_DIR = ENV["DERIVEDDATA_DIR"]
 LANGUAGES = ["en-US"]
 
 platform :ios do
@@ -32,13 +32,16 @@ platform :ios do
 
   desc "Run tests and export screenshots"
   lane :test do
-    UI.message("WORKSPACE: #{ENV['WORKSPACE']}")
-    UI.message("SCHEME: #{ENV['SCHEME']}")
-    UI.message("DEVICE: #{ENV['DEVICE']}")
-    UI.message("DESTINATION: #{ENV['DESTINATION']}")
-    UI.message("OUTPUT_DIR: #{ENV['OUTPUT_DIR']}")
-    UI.message("BUILDLOG_DIR: #{ENV['BUILDLOG_DIR']}")
-    UI.message("DERIVEDDATA_DIR: #{ENV['DERIVEDDATA_DIR']}")
+    UI.message("WORKSPACE: #{WORKSPACE}")
+    UI.message("SCHEME: #{SCHEME}")
+    UI.message("DEVICE: #{DEVICE}")
+    UI.message("LANGUAGES: #{LANGUAGES}")
+    UI.message("DESTINATION: #{DESTINATION}")
+    UI.message("OUTPUT_DIR: #{OUTPUT_DIR}")
+    UI.message("SCREENSHOTS_DIR: #{SCREENSHOTS_DIR}")
+    UI.message("COVERAGE_DIR: #{COVERAGE_DIR}")
+    UI.message("BUILDLOG_DIR: #{BUILDLOG_DIR}")
+    UI.message("DERIVEDDATA_DIR: #{DERIVEDDATA_DIR}")
     
     # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
     run_tests(
