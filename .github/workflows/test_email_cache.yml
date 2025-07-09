@@ -62,6 +62,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
+      
       - name: Install Bundler and Gems
         run: |
           gem install bundler
@@ -92,8 +93,10 @@ jobs:
             
       - name: Run tests with Fastlane
         run: bundle exec fastlane ios ${{ env.FASTLANE_TEST_LANE }}
+      
       - name: Take screenshots with Fastlane
         run: bundle exec fastlane ${{ env.FASTLANE_SCREENSHOTS_LANE }}
+      
       - name: Upload test artifacts (screenshots + logs)
         if: always()
         uses: actions/upload-artifact@v4
@@ -101,6 +104,7 @@ jobs:
 
           name: ios-artifacts
           path: ${{ env.OUTPUT_DIR }}
+     
       - name: Upload screenshots artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -108,11 +112,13 @@ jobs:
 
           name: ios-screenshots
           path: ${{ env.SCREENSHOTS_DIR }}
+     
       - name: Generate changelog
         run: |
           mkdir -p ${{ env.OUTPUT_DIR }}
           echo "## Changelog - $(date)" > ${{ env.OUTPUT_DIR }}/changelog.md
           git log -n 20 --pretty=format:"- %h %s (%an)" >> ${{ env.OUTPUT_DIR }}/changelog.md
+     
       - name: Upload changelog artifact
         uses: actions/upload-artifact@v4
         with:
