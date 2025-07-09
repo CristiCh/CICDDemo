@@ -6,7 +6,7 @@ default_platform(:ios)
 # === Parameterization ===
 # Edit these variables to change configuration globally
 WORKSPACE = ENV["WORKSPACE"] 
-SCHEME = "CICDDemo"
+SCHEME = ENV["SCHEME"]
 PROJECT = "CICDDemo.xcodeproj"
 DEVICE = "iPhone 15"
 DESTINATION = "platform=iOS Simulator,name=#{DEVICE},OS=latest"
@@ -32,10 +32,18 @@ platform :ios do
     UI.message("OUTPUT_DIR: #{ENV['OUTPUT_DIR']}")
     UI.message("BUILDLOG_DIR: #{ENV['BUILDLOG_DIR']}")
     UI.message("DERIVEDDATA_DIR: #{ENV['DERIVEDDATA_DIR']}")
+    
+    UI.message("WORKSPACE: #{WORKSPACE}")
+    UI.message("SCHEME: #{SCHEME}")
+    UI.message("DEVICE: #{DEVICE}")
+    UI.message("DESTINATION: #{DESTINATION}")
+    UI.message("OUTPUT_DIR: #{OUTPUT_DIR}")
+    UI.message("BUILDLOG_DIR: #{BUILDLOG_DIR}")
+    UI.message("DERIVEDDATA_DIR: #{DERIVEDDATA_DIR}")
   
     # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
     run_tests(
-      workspace: ENV["WORKSPACE"],
+      workspace: WORKSPACE,
       scheme: SCHEME,
       device: DEVICE,
       clean: true,
