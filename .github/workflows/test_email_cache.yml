@@ -93,6 +93,9 @@ jobs:
             
       - name: Run tests with Fastlane
         run: bundle exec fastlane ios ${{ env.FASTLANE_TEST_LANE }}
+        
+      - name: Print fastlane env vars
+        run: bundle exec fastlane debug_env
       
 #      - name: Take screenshots with Fastlane
 #        run: bundle exec fastlane ${{ env.FASTLANE_SCREENSHOTS_LANE }}

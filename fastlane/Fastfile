@@ -21,6 +21,14 @@ platform :ios do
   before_all do
     setup_circle_ci if ENV['CI']
   end
+  
+  desc "Prints env variables"
+  lane :debug_env do
+    UI.header("Printing all ENV variables:")
+    ENV.each do |key, value|
+      UI.message("#{key}=#{value}")
+    end
+  end
 
   desc "Run tests and export screenshots"
   lane :test do
@@ -31,7 +39,7 @@ platform :ios do
     UI.message("OUTPUT_DIR: #{ENV['OUTPUT_DIR']}")
     UI.message("BUILDLOG_DIR: #{ENV['BUILDLOG_DIR']}")
     UI.message("DERIVEDDATA_DIR: #{ENV['DERIVEDDATA_DIR']}")
-  
+    
     # Runs unit tests (not UI tests) on iPhone 15 simulator, outputs results and logs
     run_tests(
       workspace: WORKSPACE,
