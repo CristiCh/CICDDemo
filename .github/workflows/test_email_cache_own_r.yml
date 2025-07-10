@@ -1,0 +1,188 @@
+name: iOS Test Email Cache Own Runner
+
+env:
+  RUBY_VERSION: ${{ vars.RUBY_VERSION }}
+  FASTLANE_TEST_LANE: test
+  FASTLANE_SCREENSHOTS_LANE: screenshots
+  WORKSPACE: ${{ vars.WORKSPACE }}
+  PROJECT: ${{ vars.PROJECT }}
+  SCHEME: ${{ vars.SCHEME }}
+  DEVICE: ${{ vars.DEVICE }}
+  LANGUAGES: ${{ vars.LANGUAGES }}
+  OUTPUT_DIR: ${{ vars.OUTPUT_DYR }}
+  BUILDLOG_DIR: ${{ vars.BUILDLOG_DIR }}
+  COVERAGE_DIR: ${{ vars.COVERAGE_DIR }}
+  SCREENSHOTS_DIR: ${{ vars.SCREENSHOTS_DIR }}
+  DERIVEDDATA_DIR: ${{ vars.DERIVEDDATA_DIR }}
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - '**'
+
+jobs:
+#   cancel-previous:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Cancel Previous Runs
+#         uses: styfle/cancel-workflow-action@0.9.1
+#         with:
+#           access_token: ${{ secrets.PAT_TOKEN }}
+
+  test:
+    # needs: cancel-previous
+#    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    # runs-on: macos-latest
+    runs-on: self-hosted
+    outputs:
+      test_result: ${{ job.status }}
+      start_time: ${{ steps.start_time.outputs.time }}
+
+    steps:
+      - name: Record start time
+        id: start_time
+        run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
+      
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # - name: Cache Ruby gems
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: vendor/bundle
+      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-gems-
+
+      # - name: Install Ruby dependencies
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: ${{ env.RUBY_VERSION }}
+      
+      # - name: Install Bundler and Gems
+      #   run: |
+      #     gem install bundler
+      #     bundle config set path 'vendor/bundle'
+      #     bundle install
+
+      # - name: Cache CocoaPods pods
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: Pods
+      #     key: ${{ runner.os }}-pods-${{ hashFiles('Podfile.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pods-
+
+      # - name: Install CocoaPods
+      #   run: |
+      #     sudo gem install cocoapods
+      #     pod install --verbose
+
+      # - name: Cache DerivedData
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ${{ env.DERIVEDDATA_DIR }}
+      #     key: ${{ runner.os }}-deriveddata-${{ hashFiles('**/*.xcodeproj/**', 'Podfile.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-deriveddata-
+            
+      # - name: Install Danger
+      #   run: gem install danger
+            
+      # - name: Run Danger
+      #   env:
+      #     DANGER_GITHUB_API_TOKEN: ${{ secrets.PAT_TOKEN }}
+      #   run: bundle exec fastlane dangerr
+            
+      # - name: Run SwiftLint with Fastlane
+      #   run: bundle exec fastlane lint
+            
+      # - name: Print fastlane env vars
+      #   run: bundle exec fastlane debug_env
+            
+      - name: Run tests with Fastlane
+        run: bundle exec fastlane ios ${{ env.FASTLANE_TEST_LANE }}
+      
+#      - name: Take screenshots with Fastlane
+#        run: bundle exec fastlane ${{ env.FASTLANE_SCREENSHOTS_LANE }}
+      
+      # - name: Upload test artifacts (screenshots + logs)
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+
+      #     name: ios-artifacts
+      #     path: ${{ env.OUTPUT_DIR }}
+     
+      # - name: Generate changelog
+      #   run: |
+      #     mkdir -p ${{ env.OUTPUT_DIR }}
+      #     echo "## Changelog - $(date)" > ${{ env.OUTPUT_DIR }}/changelog.md
+      #     git log -n 20 --pretty=format:"- %h %s (%an)" >> ${{ env.OUTPUT_DIR }}/changelog.md
+     
+      # - name: Upload changelog artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ios-changelog
+      #     path: ${{ env.OUTPUT_DIR }}/changelog.md
+
+  # notify:
+  #   needs: test
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v3
+
+  #     - name: Download changelog artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: ios-changelog
+  #         path: ${{ env.OUTPUT_DIR }}
+  #     - name: Download screenshots artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: ios-artifacts
+  #         path: ${{ env.OUTPUT_DIR }}
+  #     - name: Record current time as end time
+  #       id: end_time
+  #       run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
+
+  #     - name: Calculate duration
+  #       id: duration
+  #       run: |
+  #         start=${{ needs.test.outputs.start_time }}
+  #         end=${{ steps.end_time.outputs.time }}
+  #         duration=$((end - start))
+  #         minutes=$((duration / 60))
+  #         seconds=$((duration % 60))
+  #         echo "duration=${minutes}m ${seconds}s" >> "$GITHUB_OUTPUT"
+
+  #     - name: Send email notification with test result, changelog, and screenshots
+  #       uses: dawidd6/action-send-mail@v3
+  #       with:
+  #         server_address: smtp.gmail.com
+  #         server_port: 465
+  #         username: ${{ secrets.GMAIL_USERNAME }}
+  #         password: ${{ secrets.GMAIL_APP_PASSWORD }}
+  #         subject: "${{ needs.test.outputs.test_result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed"
+  #         body: |
+  #           ${{ needs.test.outputs.test_result == 'success' && '✅' || '❌' }} iOS Test Workflow Completed
+  #           • **Status:** ${{ needs.test.outputs.test_result }}
+  #           • **Duration:** ${{ steps.duration.outputs.duration }}
+  #           • **Repository:** ${{ github.repository }}
+  #           • **Event:** ${{ github.event_name }}
+  #           • **Branch:** ${{ github.ref }}
+  #           • **Commit SHA:** ${{ github.sha }}
+  #           • **Workflow URL:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            
+  #           -- GitHub Actions
+  #         to: cristi.chertes@yahoo.com
+  #         from: ${{ secrets.GMAIL_USERNAME }}
+  # #         secure: true
+  #         attachments: |
+  #           ${{ env.OUTPUT_DIR }}/changelog.md
