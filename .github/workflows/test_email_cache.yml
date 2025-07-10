@@ -97,7 +97,7 @@ jobs:
       - name: Run Danger
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.PAT_TOKEN }}
-        run: bundle exec fastlane danger
+        run: bundle exec fastlane dangerr
             
       - name: Run SwiftLint with Fastlane
         run: bundle exec fastlane lint

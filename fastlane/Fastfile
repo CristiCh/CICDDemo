@@ -72,7 +72,7 @@ platform :ios do
   end
 
   desc "Run Danger"
-  lane :danger do
+  lane :dangerr do
     danger(
       dangerfile: "Dangerfile",
       verbose: true,
