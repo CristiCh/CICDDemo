@@ -1,4 +1,4 @@
-name: Self-hosted Runner Test
+name: iOS Self-hosted Runner
 
 on:
   workflow_dispatch:
