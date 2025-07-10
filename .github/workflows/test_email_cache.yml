@@ -22,12 +22,14 @@ on:
       - main
       - master
       - '**'
+      
   pull_request:
     types: [closed]
     branches:
       - main
       - master
       - '**'
+      
   schedule:
     - cron: '00 21 * * *'
 
