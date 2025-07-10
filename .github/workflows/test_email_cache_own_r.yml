@@ -51,7 +51,7 @@ jobs:
           fi
       - name: Install dependencies with CocoaPods
         run: |
-          gem install cocoapods # optional if not already installed
+          sudo gem install cocoapods # optional if not already installed
           pod install
         working-directory: CICDDemo
         
