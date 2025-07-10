@@ -71,6 +71,15 @@ platform :ios do
     end
   end
 
+  desc "Run Danger"
+  lane :danger do
+    danger(
+      dangerfile: "Dangerfile",
+      verbose: true,
+      use_bundle_exec: true
+    )
+  end
+
   desc "Build for simulator (no signing required)"
   lane :build_simulator do
     # Builds the app for iOS Simulator without code signing
