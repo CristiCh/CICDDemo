@@ -49,7 +49,12 @@ jobs:
           if [ -f Gemfile ]; then
             bundle install
           fi
-
+      - name: Install dependencies with CocoaPods
+        run: |
+          gem install cocoapods # optional if not already installed
+          pod install
+        working-directory: CICDDemo
+        
       - name: Run Fastlane test lane
         run: |
           if [ -f Gemfile ]; then
