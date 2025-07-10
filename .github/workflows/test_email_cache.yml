@@ -23,6 +23,12 @@ on:
       - main
       - master
       - '**'
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+      - master
+      - '**'
   schedule:
     - cron: '00 21 * * *'
 
@@ -37,6 +43,7 @@ jobs:
 
   test:
     needs: cancel-previous
+#    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     runs-on: macos-latest
     outputs:
       test_result: ${{ job.status }}
