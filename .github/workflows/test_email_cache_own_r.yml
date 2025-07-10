@@ -1,30 +1,46 @@
 name: iOS Self-hosted Runner
 
+env:
+  RUBY_VERSION: ${{ vars.RUBY_VERSION }}
+  FASTLANE_TEST_LANE: test
+  FASTLANE_SCREENSHOTS_LANE: screenshots
+  WORKSPACE: ${{ vars.WORKSPACE }}
+  PROJECT: ${{ vars.PROJECT }}
+  SCHEME: ${{ vars.SCHEME }}
+  DEVICE: ${{ vars.DEVICE }}
+  LANGUAGES: ${{ vars.LANGUAGES }}
+  OUTPUT_DIR: ${{ vars.OUTPUT_DYR }}
+  BUILDLOG_DIR: ${{ vars.BUILDLOG_DIR }}
+  COVERAGE_DIR: ${{ vars.COVERAGE_DIR }}
+  SCREENSHOTS_DIR: ${{ vars.SCREENSHOTS_DIR }}
+  DERIVEDDATA_DIR: ${{ vars.DERIVEDDATA_DIR }}
+
 on:
   workflow_dispatch:
 
 jobs:
+  print-env:
+    runs-on: self-hosted
+    steps:
+      - name: Print environment variables
+        run: |
+          echo "RUBY_VERSION: $RUBY_VERSION"
+          echo "FASTLANE_TEST_LANE: $FASTLANE_TEST_LANE"
+          echo "FASTLANE_SCREENSHOTS_LANE: $FASTLANE_SCREENSHOTS_LANE"
+          echo "WORKSPACE: $WORKSPACE"
+          echo "PROJECT: $PROJECT"
+          echo "SCHEME: $SCHEME"
+          echo "DEVICE: $DEVICE"
+          echo "LANGUAGES: $LANGUAGES"
+          echo "OUTPUT_DIR: $OUTPUT_DIR"
+          echo "BUILDLOG_DIR: $BUILDLOG_DIR"
+          echo "COVERAGE_DIR: $COVERAGE_DIR"
+          echo "SCREENSHOTS_DIR: $SCREENSHOTS_DIR"
+          echo "DERIVEDDATA_DIR: $DERIVEDDATA_DIR"
+
   test-runner:
     runs-on: self-hosted
     steps:
-      - name: Debug environment
-        run: |
-          echo "Shell: $SHELL"
-          echo "User: $(whoami)"
-          echo "Home: $HOME"
-          
-      - name: Echo Hello
-        run: echo "✅ Runner is working!"
-
-      - name: Print working directory
-        run: pwd
-
-      - name: List files
-        run: ls -la
-
-      - name: Print GitHub context
-        run: echo "${{ toJson(github) }}"
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
