@@ -7,6 +7,12 @@ jobs:
   test-runner:
     runs-on: self-hosted
     steps:
+      - name: Debug environment
+        run: |
+          echo "Shell: $SHELL"
+          echo "User: $(whoami)"
+          echo "Home: $HOME"
+          
       - name: Echo Hello
         run: echo "✅ Runner is working!"
 
